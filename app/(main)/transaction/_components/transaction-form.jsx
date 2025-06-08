@@ -180,7 +180,7 @@ export function AddTransactionForm({
             <SelectContent>
               {accounts.map((account) => (
                 <SelectItem key={account.id} value={account.id}>
-                  {account.name} (${parseFloat(account.balance).toFixed(2)})
+                  {account.name} (₹{parseFloat(account.balance).toFixed(2)})
                 </SelectItem>
               ))}
               <CreateAccountDrawer>
@@ -311,7 +311,7 @@ export function AddTransactionForm({
         <Button
           type="button"
           variant="outline"
-          className="w-full"
+          className="w-[200px]"
           onClick={() => router.back()}
           >
           Cancel

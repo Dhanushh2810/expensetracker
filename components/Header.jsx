@@ -31,7 +31,9 @@ const Header = async () => {
             <Link href="/dashboard">
             <Button variant='outline' className='border-gray-300'><LayoutDashboard size={20} /> <span className='hidden md:block'>Dashboard</span> </Button>
             </Link>
+            <Link href="/transaction/create">
             <Button >< PenBox size={20} /> <span className='hidden md:block'>Add Transactions</span> </Button>
+            </Link>
             <UserButton  
   appearance={{
     elements: {
