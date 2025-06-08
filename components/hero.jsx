@@ -1,14 +1,14 @@
 "use client";
 import Link from 'next/link'; // ✅ Correct
-
 import React, { useEffect, useRef } from 'react'
 import { Button } from './ui/button';
 import Image from 'next/image';
+import { useAuth } from "@clerk/nextjs";
 
-
-
-const hero = () => {
+const Hero = () => {
+  const { isSignedIn } = useAuth();
   const ImageRef = useRef(null);
+  
   useEffect(() => {
     const imageElement = ImageRef.current;
     const handleScroll = () => {
@@ -26,45 +26,37 @@ const hero = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  
   return (
     <div>
-      
-<div className='flex flex-col gap-4 mx-auto text-center'>
+      <div className='flex flex-col gap-4 mx-auto text-center'>
+        <h1 className='text-5xl md:text-8xl lg:text-[105px] pb-6 gradient-title'>Manage Your Finances <br /> with Intelligence</h1>
+        <p className='text-lg mx-auto max-w-2xl  text-gray-600'>An AI-powered financial management platform that helps you track,
+        analyze, and optimize your spending with real-time insights.</p>
 
-<h1 className='text-5xl md:text-8xl lg:text-[105px] pb-6 gradient-title'>Manage Your Finances <br /> with Intelligence</h1>
-<p className='text-lg mx-auto max-w-2xl  text-gray-600'>An AI-powered financial management platform that helps you track,
-analyze, and optimize your spending with real-time insights.</p>
-
-<div className='flex gap-2 mx-auto'>
-<Link href={user ? "/dashboard" : "/sign-in"}><Button  size="lg" className='bg-black text-white'>Get Started</Button></Link>
-    <Link href="/sign-up"><Button variant='outline' size=  "lg">Sign Up</Button></Link>
-</div>
-<div className='hero-image-wrapper mb-18'> 
-  <div ref={ImageRef } className='hero-image scrolled'>
-      <Image src="/banner.jpeg" alt="Dashboard preview" width={1080} height={700}
-      className='rounded-lg shadow-2xl border mx-auto'
-      />
-
+        <div className='flex gap-2 mx-auto'>
+          <Link href={isSignedIn ? "/dashboard" : "/sign-in"}>
+            <Button size="lg" className='bg-black text-white'>Get Started</Button>
+          </Link>
+          <Link href="/sign-up">
+            <Button variant='outline' size="lg">Sign Up</Button>
+          </Link>
+        </div>
+        
+        <div className='hero-image-wrapper mb-18'> 
+          <div ref={ImageRef} className='hero-image scrolled'>
+            <Image 
+              src="/banner.jpeg" 
+              alt="Dashboard preview" 
+              width={1080} 
+              height={700}
+              className='rounded-lg shadow-2xl border mx-auto'
+            />
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-   
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-  )
+  );
 }
 
-export default hero
+export default Hero;
