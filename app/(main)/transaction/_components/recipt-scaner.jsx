@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import useFetch from "@/hooks/use-fetch";
 import { scanReceipt } from "@/actions/transaction";
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB in bytes
+
 export function ReceiptScanner({ onScanComplete }) {
   const fileInputRef = useRef(null);
 
@@ -17,8 +19,8 @@ export function ReceiptScanner({ onScanComplete }) {
   } = useFetch(scanReceipt);
 
   const handleReceiptScan = async (file) => {
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error("File size should be less than 5MB");
+    if (file.size > MAX_FILE_SIZE) {
+      toast.error(`File size should be less than 10MB. Current size: ${(file.size / (1024 * 1024)).toFixed(2)}MB`);
       return;
     }
 
