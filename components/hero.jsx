@@ -36,8 +36,8 @@ const hero = () => {
 analyze, and optimize your spending with real-time insights.</p>
 
 <div className='flex gap-2 mx-auto'>
-<Link href="/dashboard"><Button  size="lg" className='bg-black text-white'>Get Started</Button></Link>
-    <Link href="/dashboard"><Button variant='outline' size=  "lg">Watch Demo</Button></Link>
+<Link href={user ? "/dashboard" : "/sign-in"}><Button  size="lg" className='bg-black text-white'>Get Started</Button></Link>
+    <Link href="/sign-up"><Button variant='outline' size=  "lg">Sign Up</Button></Link>
 </div>
 <div className='hero-image-wrapper mb-18'> 
   <div ref={ImageRef } className='hero-image scrolled'>
